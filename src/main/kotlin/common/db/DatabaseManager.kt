@@ -2,7 +2,7 @@ package common.db
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
-import common.config.AppConfiguration
+import common.config.EnvironmentVariables
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.flywaydb.core.Flyway
@@ -22,7 +22,7 @@ object DatabaseManager {
     /**
      * Establishes a database connection using HikariCP connection pool and runs Flyway migrations.
      */
-    fun connectAndMigrate(appConfig: AppConfiguration) {
+    fun connectAndMigrate(appConfig: EnvironmentVariables) {
         val pool = createConnectionPool(appConfig)
         Database.connect(pool)
         runFlyway(appConfig, pool)
@@ -33,10 +33,10 @@ object DatabaseManager {
      *
      * @return HikariCP data source.
      */
-    private fun createConnectionPool(appConfiguration: AppConfiguration): HikariDataSource {
+    private fun createConnectionPool(environmentVariables: EnvironmentVariables): HikariDataSource {
         val config = HikariConfig().apply {
             driverClassName = "org.postgresql.Driver"
-            this.jdbcUrl = appConfiguration.jdbcUrl
+            this.jdbcUrl = environmentVariables.jdbcUrl
             maximumPoolSize = 3
             isAutoCommit = false
             transactionIsolation = "TRANSACTION_REPEATABLE_READ"
@@ -50,7 +50,7 @@ object DatabaseManager {
      *
      * @param datasource The data source for the database.
      */
-    private fun runFlyway(appConfig: AppConfiguration, datasource: DataSource) {
+    private fun runFlyway(appConfig: EnvironmentVariables, datasource: DataSource) {
         val flyway = Flyway.configure()
             .dataSource(datasource)
             .locations(appConfig.flywayMigrationPath)

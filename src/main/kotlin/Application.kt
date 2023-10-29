@@ -1,3 +1,6 @@
+import common.config.AppConfig
+import common.config.AuthConfig
+import common.config.RouteConfig
 import io.ktor.server.application.*
 
 fun main(args: Array<String>) {

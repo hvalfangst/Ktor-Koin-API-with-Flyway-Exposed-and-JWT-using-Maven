@@ -1,4 +1,5 @@
-import common.config.initializeAppConfigSingleton
+package common.config
+
 import common.security.AccessControl
 import common.security.Hasher
 import common.security.JwtUtil
@@ -17,7 +18,7 @@ class AuthConfig {
      */
     fun configure(application: Application) {
         // Create a JWT utility instance with application configuration
-        val jwtUtil = JwtUtil(initializeAppConfigSingleton(application.environment))
+        val jwtUtil = JwtUtil(initEnvironmentVariables(application.environment))
 
         // Install the Authentication feature and configure authentication methods
         application.install(Authentication) {

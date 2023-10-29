@@ -5,10 +5,10 @@ import com.auth0.jwt.JWTVerifier
 import com.auth0.jwt.algorithms.Algorithm
 import com.auth0.jwt.exceptions.JWTVerificationException
 import com.auth0.jwt.interfaces.DecodedJWT
-import common.config.AppConfiguration
+import common.config.EnvironmentVariables
 import java.util.*
 
-class JwtUtil(private val appConfig: AppConfiguration) {
+class JwtUtil(private val appConfig: EnvironmentVariables) {
     private val jwtVerifier: JWTVerifier = JWT.require(Algorithm.HMAC256(appConfig.secret))
         .withIssuer(appConfig.issuer)
         .build()

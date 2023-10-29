@@ -12,7 +12,7 @@ import io.ktor.server.application.*
  * @property audience The intended audience for JWT tokens.
  * @property flywayMigrationPath The path used by Flyway for database migration scripts.
  */
-data class AppConfiguration(
+data class EnvironmentVariables(
     val jdbcUrl: String,
     val issuer: String,
     val secret: String,
@@ -22,17 +22,17 @@ data class AppConfiguration(
 
 /**
  * Initializes the application configuration by loading values from the Ktor application environment
- * derived from 'application.yaml' and returns an instance of [AppConfiguration].
+ * derived from 'application.yaml' and returns an instance of [EnvironmentVariables].
  *
  * This function loads configuration values, such as database connection details and JWT settings,
  * from the provided Ktor application environment.
  *
  * @param environment The Ktor application environment containing configuration properties.
- * @return An instance of [AppConfiguration] with the loaded configuration values.
+ * @return An instance of [EnvironmentVariables] with the loaded configuration values.
  * @throws IllegalArgumentException if any of the required configuration properties are missing.
  */
-    fun initializeAppConfigSingleton(environment: ApplicationEnvironment) : AppConfiguration {
-    return AppConfiguration(
+    fun initEnvironmentVariables(environment: ApplicationEnvironment) : EnvironmentVariables {
+    return EnvironmentVariables(
         environment.config.propertyOrNull("db.jdbcUrl")?.getString() ?: error("db.jdbcUrl must be configured"),
         environment.config.propertyOrNull("jwt.issuer")?.getString() ?: error("jwt.issuer must be configured"),
         environment.config.propertyOrNull("jwt.secret")?.getString() ?: error("jwt.secret must be configured"),
