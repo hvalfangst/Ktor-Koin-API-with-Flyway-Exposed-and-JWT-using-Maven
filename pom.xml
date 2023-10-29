@@ -181,6 +181,58 @@
             <version>2.3.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.mockk</groupId>
+            <artifactId>mockk</artifactId>
+            <version>1.9.3</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Ktor Test Dependencies -->
+        <dependency>
+            <groupId>io.ktor</groupId>
+            <artifactId>ktor-server-test-host</artifactId>
+            <version>1.6.5</version> <!-- Replace with your Ktor version -->
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.ktor</groupId>
+            <artifactId>ktor-server-netty</artifactId>
+            <version>1.6.5</version> <!-- Replace with your Ktor version and server engine -->
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JUnit 4 Dependencies -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version> <!-- Use the version of JUnit 4 you prefer -->
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.9.3</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-test-junit</artifactId>
+            <version>${kotlin_version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.insert-koin</groupId>
+            <artifactId>koin-core</artifactId>
+            <version>3.5.0</version>
+            <scope>runtime</scope>
+        </dependency>
+
+
+
     </dependencies>
 
     <build>
