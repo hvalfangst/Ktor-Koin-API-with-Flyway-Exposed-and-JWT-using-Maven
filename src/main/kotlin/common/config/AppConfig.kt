@@ -7,15 +7,14 @@ import io.ktor.server.plugins.contentnegotiation.*
 
 class AppConfig {
     fun configure(application: Application) {
-        // Initialize singleton for accessing environment variables derived from 'application.yml'
-        val configSingleton = initEnvironmentVariables(application.environment)
 
         // Connect to the database and run Flyway migrations
-        DatabaseManager.connectAndMigrate(configSingleton)
+        DatabaseManager().connectAndMigrate()
 
         // Configure content negotiation to handle JSON
         application.install(ContentNegotiation) {
             json()
         }
+
     }
 }

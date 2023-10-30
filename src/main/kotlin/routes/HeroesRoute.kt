@@ -11,9 +11,12 @@ import io.ktor.server.routing.*
 import models.Access
 import models.Hero
 import models.requests.UpsertHeroRequest
+import org.koin.ktor.ext.inject
 import services.HeroService
 
-fun Route.heroesRoute(heroService: HeroService) {
+fun Route.heroesRoute() {
+    val heroService: HeroService by inject()
+
     authenticate("auth-jwt") {
         route("/heroes") {
 

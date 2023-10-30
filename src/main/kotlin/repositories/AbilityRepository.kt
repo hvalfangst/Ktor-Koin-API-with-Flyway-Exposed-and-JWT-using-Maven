@@ -1,6 +1,6 @@
 package repositories
 
-import common.db.DatabaseManager.executeInTransaction
+import common.db.executeInTransaction
 import models.Ability
 import models.requests.UpsertAbilityRequest
 import models.tables.AbilitiesTable

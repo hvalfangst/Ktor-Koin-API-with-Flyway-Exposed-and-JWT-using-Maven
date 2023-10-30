@@ -1,7 +1,5 @@
 package common.config
 
-import io.ktor.server.application.*
-
 
 /**
  * Data class representing the application configuration.
@@ -18,26 +16,13 @@ data class EnvironmentVariables(
     val secret: String,
     val audience: String,
     val flywayMigrationPath: String
-)
-
-/**
- * Initializes the application configuration by loading values from the Ktor application environment
- * derived from 'application.yaml' and returns an instance of [EnvironmentVariables].
- *
- * This function loads configuration values, such as database connection details and JWT settings,
- * from the provided Ktor application environment.
- *
- * @param environment The Ktor application environment containing configuration properties.
- * @return An instance of [EnvironmentVariables] with the loaded configuration values.
- * @throws IllegalArgumentException if any of the required configuration properties are missing.
- */
-    fun initEnvironmentVariables(environment: ApplicationEnvironment) : EnvironmentVariables {
-    return EnvironmentVariables(
-        environment.config.propertyOrNull("db.jdbcUrl")?.getString() ?: error("db.jdbcUrl must be configured"),
-        environment.config.propertyOrNull("jwt.issuer")?.getString() ?: error("jwt.issuer must be configured"),
-        environment.config.propertyOrNull("jwt.secret")?.getString() ?: error("jwt.secret must be configured"),
-        environment.config.propertyOrNull("jwt.audience")?.getString() ?: error("jwt.audience must be configured"),
-        environment.config.propertyOrNull("flyway.migrationPath")?.getString() ?: error("flyway.migrationPath must be configured")
-    )
+) {
+    init {
+        require(jdbcUrl != "NIL") { "jdbcUrl cannot have the value 'NIL'" }
+        require(issuer != "NIL") { "issuer cannot have the value 'NIL'" }
+        require(secret != "NIL") { "secret cannot have the value 'NIL'" }
+        require(audience != "NIL") { "audience cannot have the value 'NIL'" }
+        require(flywayMigrationPath != "NIL") { "flywayMigrationPath cannot have the value 'NIL'" }
+    }
 }
 

@@ -5,20 +5,23 @@ import common.security.Hasher
 import common.security.JwtUtil
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import repositories.UserRepository
 
 /**
  * Configuration class for setting up authentication in the Ktor application.
  */
-class AuthConfig {
+class AuthConfig: KoinComponent {
+    private val jwtUtil: JwtUtil by inject()
+
+
     /**
      * Configure authentication methods within the Ktor application.
      *
      * @param application The Ktor application instance.
      */
     fun configure(application: Application) {
-        // Create a JWT utility instance with application configuration
-        val jwtUtil = JwtUtil(initEnvironmentVariables(application.environment))
 
         // Install the Authentication feature and configure authentication methods
         application.install(Authentication) {

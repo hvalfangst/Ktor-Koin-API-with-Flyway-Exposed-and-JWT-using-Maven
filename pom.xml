@@ -3,10 +3,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>hvalfangst</groupId>
-    <artifactId>ktor-api-with-auth</artifactId>
+    <artifactId>ktor-koin-api-with-flyway-exposed-and-jwt-using-maven</artifactId>
     <version>0.0.1</version>
-    <name>hvalfangst.ktor-api-with-auth</name>
-    <description>Ktor API with auth</description>
+    <name>hvalfangst.ktor-koin-api-with-flyway-exposed-and-jwt-using-maven-</name>
+    <description>Ktor Koin API with Flyway, Exposed and JWT using Maven</description>
 
     <properties>
         <ktor_version>2.3.5</ktor_version>
@@ -29,6 +29,12 @@
             <groupId>io.ktor</groupId>
             <artifactId>ktor-server-core-jvm</artifactId>
             <version>${ktor_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.ktor</groupId>
+            <artifactId>ktor-server-netty</artifactId>
+            <version>1.6.5</version>
+            <scope>test</scope>
         </dependency>
 
         <!-- Ktor Serialization Kotlinx JSON - Serialization support for JSON -->
@@ -181,6 +187,30 @@
             <version>2.3.2</version>
         </dependency>
 
+        <!-- Test-related Dependencies -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.9.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-test-junit</artifactId>
+            <version>${kotlin_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.ktor</groupId>
+            <artifactId>ktor-server-test-host</artifactId>
+            <version>1.6.5</version> <!-- Replace with your Ktor version -->
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>io.mockk</groupId>
             <artifactId>mockk</artifactId>
@@ -188,47 +218,16 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Ktor Test Dependencies -->
-        <dependency>
-            <groupId>io.ktor</groupId>
-            <artifactId>ktor-server-test-host</artifactId>
-            <version>1.6.5</version> <!-- Replace with your Ktor version -->
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>io.ktor</groupId>
-            <artifactId>ktor-server-netty</artifactId>
-            <version>1.6.5</version> <!-- Replace with your Ktor version and server engine -->
-            <scope>test</scope>
-        </dependency>
-
-        <!-- JUnit 4 Dependencies -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version> <!-- Use the version of JUnit 4 you prefer -->
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.9.3</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-test-junit</artifactId>
-            <version>${kotlin_version}</version>
-        </dependency>
-
+        <!-- Koin for Dependency Injection -->
         <dependency>
             <groupId>io.insert-koin</groupId>
             <artifactId>koin-core</artifactId>
             <version>3.5.0</version>
-            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.insert-koin</groupId>
+            <artifactId>koin-ktor</artifactId>
+            <version>3.4.1</version>
         </dependency>
 
 

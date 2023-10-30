@@ -1,9 +1,7 @@
 package routes
 
-import com.auth0.jwt.exceptions.TokenExpiredException
 import common.messages.ErrorMessage
 import common.security.AccessControl.Companion.validateAccess
-import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
 import io.ktor.server.plugins.*
@@ -13,9 +11,12 @@ import io.ktor.server.routing.*
 import models.Ability
 import models.Access
 import models.requests.UpsertAbilityRequest
+import org.koin.ktor.ext.inject
 import services.AbilityService
 
-fun Route.abilitiesRoute(abilityService: AbilityService) {
+fun Route.abilitiesRoute() {
+    val abilityService: AbilityService by inject()
+
     authenticate("auth-jwt") {
         route("/abilities") {
 

@@ -6,9 +6,13 @@ import com.auth0.jwt.algorithms.Algorithm
 import com.auth0.jwt.exceptions.JWTVerificationException
 import com.auth0.jwt.interfaces.DecodedJWT
 import common.config.EnvironmentVariables
+import org.koin.core.component.KoinComponent
 import java.util.*
+import org.koin.core.component.inject
 
-class JwtUtil(private val appConfig: EnvironmentVariables) {
+class JwtUtil: KoinComponent {
+    private val appConfig: EnvironmentVariables by inject()
+
     private val jwtVerifier: JWTVerifier = JWT.require(Algorithm.HMAC256(appConfig.secret))
         .withIssuer(appConfig.issuer)
         .build()

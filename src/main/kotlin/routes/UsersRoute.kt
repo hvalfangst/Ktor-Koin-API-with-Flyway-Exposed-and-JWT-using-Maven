@@ -1,6 +1,5 @@
 package routes
 
-import models.requests.UpsertUserRequest
 import common.messages.ErrorMessage
 import common.security.AccessControl.Companion.DELIMITER
 import common.security.JwtUtil
@@ -11,9 +10,14 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import models.User
+import models.requests.UpsertUserRequest
+import org.koin.ktor.ext.inject
 import services.UserService
 
-fun Route.usersRoute(jwtUtil: JwtUtil, userService: UserService) {
+fun Route.usersRoute() {
+    val userService: UserService by inject()
+    val jwtUtil: JwtUtil by inject()
+
     route("/users") {
 
         get {

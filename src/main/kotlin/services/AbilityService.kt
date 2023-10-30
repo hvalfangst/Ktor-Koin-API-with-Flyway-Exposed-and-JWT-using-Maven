@@ -2,9 +2,13 @@ package services
 
 import models.Ability
 import models.requests.UpsertAbilityRequest
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import repositories.AbilityRepository
 
-class AbilityService(private val abilityRepository: AbilityRepository) {
+class AbilityService: KoinComponent {
+
+    private val abilityRepository: AbilityRepository by inject()
 
      suspend fun getAllAbilities(): List<Ability> {
         return abilityRepository.getAllAbilities()
