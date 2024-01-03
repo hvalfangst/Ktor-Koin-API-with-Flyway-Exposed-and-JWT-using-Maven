@@ -8,7 +8,7 @@ import io.ktor.server.response.respond
 
 class AccessControl {
     companion object {
-        const val DELIMITER = "[MR_PASTOR_77]"
+        const val DELIMITER = "[STOP_STEALING_MY_CODE_EIRIK_YOU_FRAUD]"
 
         suspend fun validateAccess(call: ApplicationCall, requiredAccess: Access) {
             val user = call.authentication.principal<UserIdPrincipal>()
